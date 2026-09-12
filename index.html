@@ -1,1 +1,493 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Undangan Pernikahan - Fadhila & Ilham</title>
 
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --maroon: #681313;
+      --gold: #d4af37;
+      --cream: #faf6f0;
+      --white: #ffffff;
+      --text-dark: #333333;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #2b2b2b;
+      color: var(--text-dark);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      background: var(--cream);
+      min-height: 100vh;
+      box-shadow: 0 0 25px rgba(0,0,0,0.5);
+      position: relative;
+      overflow-x: hidden;
+      padding-bottom: 70px;
+    }
+
+    /* Cover / Header Section */
+    .cover-screen {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 480px;
+      height: 100vh;
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 30px 20px;
+      z-index: 999;
+      transition: transform 0.8s ease-in-out;
+    }
+
+    .cover-screen.open {
+      transform: translate(-50%, -100%);
+    }
+
+    /* Decorative Wayang/Gunungan Graphic Placeholder */
+    .gunungan-icon {
+      font-size: 3.5rem;
+      color: var(--maroon);
+      margin-bottom: 10px;
+    }
+
+    .couple-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.2rem;
+      color: var(--maroon);
+      margin: 10px 0;
+    }
+
+    .sub-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      color: var(--gold);
+    }
+
+    /* Section Styling */
+    section {
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .section-divider {
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin: 15px auto;
+    }
+
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      color: var(--maroon);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Profile Photos */
+    .profile-img {
+      width: 200px;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 4px solid var(--white);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+      margin-bottom: 15px;
+    }
+
+    .social-link {
+      color: var(--maroon);
+      font-size: 0.85rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 5px;
+    }
+
+    /* Countdown Timer */
+    .timer-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .timer-box {
+      background: var(--white);
+      padding: 10px;
+      border-radius: 8px;
+      min-width: 65px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .timer-box span {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--maroon);
+      display: block;
+    }
+
+    .timer-box small {
+      font-size: 0.75rem;
+      color: #666;
+    }
+
+    /* Event Card */
+    .card-event {
+      background: var(--white);
+      border-radius: 15px;
+      padding: 25px 20px;
+      margin: 20px 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid #f0e6d2;
+    }
+
+    .card-event h3 {
+      font-family: 'Cinzel', serif;
+      color: var(--maroon);
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    /* RSVP & Wishes */
+    .rsvp-stats {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .stat-box {
+      flex: 1;
+      padding: 10px;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      font-size: 0.85rem;
+    }
+
+    .bg-green { background-color: #2e7d32; }
+    .bg-red { background-color: #c62828; }
+    .bg-yellow { background-color: #f57f17; }
+
+    .form-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+
+    .form-group label {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-top: 5px;
+      outline: none;
+    }
+
+    /* Gift & Bank */
+    .bank-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+      border-left: 4px solid var(--maroon);
+      text-align: left;
+    }
+
+    /* Buttons */
+    .btn {
+      background: var(--maroon);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #4a0d0d;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: #333;
+    }
+
+    /* Bottom Navigation Bar */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 480px;
+      background: var(--maroon);
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      z-index: 900;
+    }
+
+    .nav-item {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .nav-item.active, .nav-item:hover {
+      color: var(--gold);
+    }
+
+    .nav-item i {
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="bg-music" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg" />
+  </audio>
+
+  <div class="container">
+    
+    <div class="cover-screen" id="cover">
+      <div class="gunungan-icon"><i class="fas fa-place-of-worship"></i></div>
+      <p class="sub-title">PERNIKAHAN</p>
+      <h1 class="couple-title">Fadhila & Ilham</h1>
+      <p style="font-size: 0.85rem; color: #666; margin: 15px 0;">Kepada Yth. Bapak/Ibu/Saudara/i:<br><b style="font-size: 1rem; color: #333;">Tamu Undangan</b></p>
+      <button class="btn btn-gold" onclick="openInvitation()"><i class="fas fa-envelope-open"></i> Buka Undangan</button>
+    </div>
+
+    <section id="home">
+      <div class="gunungan-icon"><i class="fas fa-place-of-worship"></i></div>
+      <p class="sub-title">PERNIKAHAN</p>
+      <h1 class="couple-title">Fadhila & Ilham</h1>
+      <p style="font-weight: 600; color: var(--gold);">29 . 03 . 2026</p>
+    </section>
+
+    <section id="couple">
+      <h2 class="section-title">Pasangan Mempelai</h2>
+      <div class="section-divider"></div>
+      <p style="font-size: 0.85rem; color: #666; margin-bottom: 25px; font-style: italic;">
+        Dengan memohon rahmat dan ridho Allah Subhanahu Wa Ta'ala, kami bermaksud menyelenggarakan acara pernikahan kami:
+      </p>
+
+      <div>
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" class="profile-img" alt="Fadhila">
+        <h3 style="font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: var(--maroon);">Fadhila</h3>
+        <p style="font-weight: 600; font-size: 0.9rem;">Fadhila Fatmawati</p>
+        <p style="font-size: 0.8rem; color: #666;">Putri Kedua dari Bapak Suratno & Ibu Mungkiatun</p>
+        <a href="https://instagram.com" target="_blank" class="social-link"><i class="fab fa-instagram"></i> @fadhila_317</a>
+      </div>
+
+      <div style="font-size: 2rem; color: var(--gold); margin: 25px 0;">&</div>
+
+      <div>
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" class="profile-img" alt="Ilham">
+        <h3 style="font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: var(--maroon);">Ilham</h3>
+        <p style="font-weight: 600; font-size: 0.9rem;">Ilham Hendrik Prasetyo</p>
+        <p style="font-size: 0.8rem; color: #666;">Putra Pertama dari Bapak Purwanto & Ibu Saminiastuti</p>
+        <a href="https://instagram.com" target="_blank" class="social-link"><i class="fab fa-instagram"></i> @ilhamhendrikk_</a>
+      </div>
+    </section>
+
+    <section id="event">
+      <h2 class="section-title">Waktu & Tempat</h2>
+      <div class="section-divider"></div>
+
+      <div class="timer-container">
+        <div class="timer-box"><span id="days">0</span><small>Hari</small></div>
+        <div class="timer-box"><span id="hours">0</span><small>Jam</small></div>
+        <div class="timer-box"><span id="minutes">0</span><small>Menit</small></div>
+        <div class="timer-box"><span id="seconds">0</span><small>Detik</small></div>
+      </div>
+
+      <p style="font-size: 0.8rem; color: #666; margin: 20px 0; font-style: italic;">
+        "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri..." (QS. Ar-Rum: 21)
+      </p>
+
+      <div class="card-event">
+        <h3>Akad Nikah</h3>
+        <p><i class="far fa-calendar-alt"></i> Kamis, 26 Maret 2026</p>
+        <p><i class="far fa-clock"></i> Pukul 09.00 WIB - Selesai</p>
+        <p style="margin-top: 10px;"><b>Bertempat di:</b><br>KUA TANON<br><small>Kabupaten Sragen, Jawa Tengah</small></p>
+        <br>
+        <a href="https://maps.google.com" target="_blank" class="btn"><i class="fas fa-map-marker-alt"></i> Lihat Lokasi</a>
+      </div>
+
+      <div class="card-event">
+        <h3>Resepsi Pernikahan</h3>
+        <p><i class="far fa-calendar-alt"></i> Minggu, 29 Maret 2026</p>
+        <p><i class="far fa-clock"></i> Pukul 10.00 WIB - Selesai</p>
+        <p style="margin-top: 10px;"><b>Bertempat di:</b><br>Rumah Mempelai Wanita<br><small>Tanowitan, Gawan, Tanon, Sragen</small></p>
+        <br>
+        <a href="https://maps.google.com" target="_blank" class="btn"><i class="fas fa-map-marker-alt"></i> Lihat Lokasi</a>
+      </div>
+    </section>
+
+    <section id="rsvp">
+      <h2 class="section-title">Buku Tamu & RSVP</h2>
+      <div class="section-divider"></div>
+      <p style="font-size: 0.85rem; color: #666; margin-bottom: 20px;">Berikan Ucapan & Doa Restu</p>
+
+      <div class="rsvp-stats">
+        <div class="stat-box bg-green">1<br>Hadir</div>
+        <div class="stat-box bg-red">0<br>Tidak Hadir</div>
+        <div class="stat-box bg-yellow">0<br>Ragu-Ragu</div>
+      </div>
+
+      <form id="rsvp-form" onsubmit="addWishes(event)">
+        <div class="form-group">
+          <label>Nama</label>
+          <input type="text" id="name" class="form-control" placeholder="Nama Anda" required />
+        </div>
+        <div class="form-group">
+          <label>Ucapan / Doa</label>
+          <textarea id="message" class="form-control" rows="3" placeholder="Tulis ucapan..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label>Konfirmasi Kehadiran</label>
+          <select id="status" class="form-control">
+            <option value="Hadir">Hadir</option>
+            <option value="Tidak Hadir">Tidak Hadir</option>
+            <option value="Ragu-Ragu">Ragu-Ragu</option>
+          </select>
+        </div>
+        <button type="submit" class="btn" style="width: 100%; justify-content: center;">Kirim</button>
+      </form>
+
+      <div id="wishes-list" style="margin-top: 20px; text-align: left;">
+        <div style="background: white; padding: 12px; border-radius: 8px; margin-bottom: 10px; font-size: 0.85rem;">
+          <b>Keluarga Pengantin</b>
+          <p style="color: #555; margin-top: 4px;">Semoga menjadi keluarga sakinah mawaddah warahmah... aminnn 🤲❤️</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="gift">
+      <h2 class="section-title">Gift & Angpao Digital</h2>
+      <div class="section-divider"></div>
+      <p style="font-size: 0.85rem; color: #666; margin-bottom: 20px;">Doa restu Anda merupakan hadiah terindah bagi kami. Namun jika ingin memberikan tanda kasih secara digital, Anda dapat mentransfer ke:</p>
+
+      <div class="bank-card">
+        <p><b>Bank Mandiri</b></p>
+        <p id="rek1" style="font-weight: 700; color: var(--maroon); margin: 5px 0;">1380024073299</p>
+        <p style="font-size: 0.8rem; color: #666;">a.n. Ilham Hendrik Prasetyo</p>
+        <button class="btn btn-gold" style="padding: 5px 12px; font-size: 0.75rem; margin-top: 8px;" onclick="copyText('rek1')">Copy No. Rekening</button>
+      </div>
+
+      <div class="bank-card">
+        <p><b>Bank Seabank</b></p>
+        <p id="rek2" style="font-weight: 700; color: var(--maroon); margin: 5px 0;">901768466175</p>
+        <p style="font-size: 0.8rem; color: #666;">a.n. Fadhila Fatmawati</p>
+        <button class="btn btn-gold" style="padding: 5px 12px; font-size: 0.75rem; margin-top: 8px;" onclick="copyText('rek2')">Copy No. Rekening</button>
+      </div>
+    </section>
+
+    <footer style="padding: 25px; text-align: center; font-size: 0.8rem; color: #777; background: #f0e6d2;">
+      <h3 style="font-family: 'Great Vibes', cursive; font-size: 1.8rem; color: var(--maroon);">Fadhila & Ilham</h3>
+      <p style="margin-top: 5px;">Wassalamu'alaikum Wr. Wb.</p>
+    </footer>
+
+    <nav class="bottom-nav">
+      <a href="#home" class="nav-item active"><i class="fas fa-home"></i> Home</a>
+      <a href="#couple" class="nav-item"><i class="fas fa-heart"></i> Mempelai</a>
+      <a href="#event" class="nav-item"><i class="fas fa-calendar-alt"></i> Acara</a>
+      <a href="#rsvp" class="nav-item"><i class="fas fa-comments"></i> RSVP</a>
+      <a href="#gift" class="nav-item"><i class="fas fa-gift"></i> Hadiah</a>
+    </nav>
+
+  </div>
+
+  <script>
+    // Buka Undangan & Play Music
+    function openInvitation() {
+      document.getElementById('cover').classList.add('open');
+      const music = document.getElementById("bg-music");
+      music.play().catch(err => console.log("Autoplay blocked"));
+    }
+
+    // Copy Nomor Rekening
+    function copyText(elementId) {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text);
+      alert("Nomor rekening berhasil disalin: " + text);
+    }
+
+    // Submit Wish Form Simulation
+    function addWishes(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const msg = document.getElementById('message').value;
+
+      const container = document.getElementById('wishes-list');
+      const newWish = document.createElement('div');
+      newWish.style.cssText = "background: white; padding: 12px; border-radius: 8px; margin-bottom: 10px; font-size: 0.85rem;";
+      newWish.innerHTML = `<b>${name}</b><p style="color: #555; margin-top: 4px;">${msg}</p>`;
+      
+      container.prepend(newWish);
+      document.getElementById('rsvp-form').reset();
+    }
+
+    // Countdown Timer (29 Maret 2026)
+    const eventDate = new Date("Mar 29, 2026 10:00:00").getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+
+      if (distance > 0) {
+        document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24));
+        document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById("minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById("seconds").innerText = Math.floor((distance % (1000 * 60)) / 1000);
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
